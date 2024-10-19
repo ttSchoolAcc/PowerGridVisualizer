@@ -83,7 +83,7 @@ function App() {
               <img src={hydroDam} alt="Hydro Dam" class="power-source-image"/>
             </button>
             <p>x{hydroNum}</p>
-
+{/* fsdaf */}
           </div>
         </div>
 
