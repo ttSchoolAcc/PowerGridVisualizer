@@ -7,12 +7,17 @@ import solarPanel from './Graphics/SolarPanel.png';
 import windTurbine from './Graphics/WindTurbine.png';
 import hydroDam from './Graphics/HydroDam.png';
 
+import house from './Graphics/House.png';
+
 function App() {
 
   //let solarNum = 0;
   const [solarNum, setCount] = useState(0);
   const [windNum, setWindCount] = useState(0);
   const [hydroNum, setHydroCount] = useState(0);
+
+  const [items, setItems] = useState([]);
+  //items.push("Item x"); //USE THIS TO ADD HOUSES
 
   const powerClick = (powerType, numToAdd) => 
   {
@@ -28,6 +33,8 @@ function App() {
     {
       setHydroCount(hydroNum + numToAdd);
     }
+
+    
   }
   
 
@@ -83,7 +90,6 @@ function App() {
               <img src={hydroDam} alt="Hydro Dam" class="power-source-image"/>
             </button>
             <p>x{hydroNum}</p>
-{/* fsdaf */}
           </div>
         </div>
 
@@ -91,6 +97,14 @@ function App() {
         <div style={{flex: '45%'}}>
           <div class="mainpage-columns" style={{height: '400px'}}>
             <h2>Homes</h2>
+
+
+            <ul>
+              {items.map((item, index) => (
+                <img src={house} alt="House" class="power-source-image"/>
+              ))}
+            </ul>
+
           </div>
 
         {/*-------------------------------------------- STATISTICS -------------------------------------------- */}
