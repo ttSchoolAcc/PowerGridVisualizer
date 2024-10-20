@@ -29,6 +29,7 @@ function App() {
   const [hydroPowerNum, setHydroPowerNum] = useState(10958904);
 
   const [homeEnergyConsumption] = useState(100); //30 kwh per day is average
+  const [amountOfHomes , setHomeAmount] = useState(100);
 
   const [items, setItems] = useState([]);
   const [powerBldgs, setBldgs] = useState([]);
@@ -90,8 +91,14 @@ function App() {
     if(roundedNum > 0)
     {
       houseAdd()
+      roundedNum = Math.floor(roundedNum);
+      setHomeAmount(roundedNum + 1);
     }
-    roundedNum = Math.floor(roundedNum);
+    else
+    {
+      roundedNum = Math.floor(roundedNum);
+      setHomeAmount(0);
+    }
     houseAutoAdd(roundedNum);
   }, [totalPower, homeEnergyConsumption]);
 
@@ -214,8 +221,10 @@ function App() {
               ))}
             </ul>
 
-            <button onClick={() => houseDelete()}> Remove House (Placeholder)</button>
-            <button onClick={() => houseAdd()}> Add House (Placeholder)</button>
+            <h2>Homes Powered: {amountOfHomes}</h2>
+
+            {/* <button onClick={() => houseDelete()}> Remove House (Placeholder)</button>
+            <button onClick={() => houseAdd()}> Add House (Placeholder)</button> */}
 
 
 
