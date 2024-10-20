@@ -16,7 +16,14 @@ function App() {
   const [windNum, setWindCount] = useState(0);
   const [hydroNum, setHydroCount] = useState(0);
 
-  //const [solarPowerNum, setHydroCount] = useState(2); //We use KW/H
+  //We use KW/H
+  const [totalPower, setTotalPower] = useState(0);
+
+  const [powerAddMult, setPowerAddMult] = useState(0); //Use this to differentiate between the power sources
+
+  const [solarPowerNum, setSolarPowerNum] = useState(2); //Assume 6 hours a day
+  const [windPowerNum, setWindPowerNum] = useState(2);
+  const [hydroPowerNum, setHydroPowerNum] = useState(2);
 
   const [items, setItems] = useState([]);
   //items.push("Item x"); //USE THIS TO ADD HOUSES
@@ -26,17 +33,26 @@ function App() {
     if(powerType === "Solar" && solarNum + numToAdd >= 0)
     {
       setCount(solarNum + numToAdd);
+      setTotalPower(powerAddMult = solarPowerNum);
     }
     else if(powerType === "Wind" && windNum + numToAdd >= 0)
     {
       setWindCount(windNum + numToAdd);
+      setTotalPower(powerAddMult = windPowerNum);
     }
     else if(powerType === "Hydro" && hydroNum + numToAdd >= 0)
     {
       setHydroCount(hydroNum + numToAdd);
+      setTotalPower(powerAddMult = hydroPowerNum);
     }
 
-    
+    addUpPower(numToAdd * powerAddMult); //-1 or 1 times the power being added
+  }
+
+  function addUpPower(KWHNumber)
+  {
+    setTotalPower(totalPower += KWHNumber);
+    console.log(totalPower);
   }
   
 
