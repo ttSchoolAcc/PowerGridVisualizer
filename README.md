@@ -1,7 +1,11 @@
 <h2>Renewable Energy Visualizer</h2>
 
+To run the program, first run 'npm install' into visual studio code, then to launch the application 'cd PowerGridVisualizer' then run 'npm start'. A new webpage will open.
+
 To get started, click on the power sources found on the left side of the screen.
+
 The power source selected will then be put on to the grid found in the middle of the screen.
+
 To remove a power source, click on the button of the corresponding power source found in the grid section.
 
 On the right hand side you will find a graphic displaying how many homes the power grid will be able to supply,
