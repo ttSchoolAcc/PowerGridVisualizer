@@ -16,6 +16,8 @@ function App() {
   const [windNum, setWindCount] = useState(0);
   const [hydroNum, setHydroCount] = useState(0);
 
+  //const [solarPowerNum, setHydroCount] = useState(2); //We use KW/H
+
   const [items, setItems] = useState([]);
   //items.push("Item x"); //USE THIS TO ADD HOUSES
 
