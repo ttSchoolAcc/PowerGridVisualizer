@@ -21,9 +21,12 @@ function App() {
 
   const [powerAddMult, setPowerAddMult] = useState(0); //Use this to differentiate between the power sources
 
+  //THESE VALUES ARE PER DAY KW/H
   const [solarPowerNum, setSolarPowerNum] = useState(2); //Assume 6 hours a day
-  const [windPowerNum, setWindPowerNum] = useState(2);
-  const [hydroPowerNum, setHydroPowerNum] = useState(2);
+  const [windPowerNum, setWindPowerNum] = useState(21.5);
+  const [hydroPowerNum, setHydroPowerNum] = useState(10958904);
+
+  const [homeEnergyConsumption] = useState(30); //30 kwh per day
 
   const [items, setItems] = useState([]);
   //items.push("Item x"); //USE THIS TO ADD HOUSES
@@ -33,19 +36,27 @@ function App() {
     if(powerType === "Solar" && solarNum + numToAdd >= 0)
     {
       setCount(solarNum + numToAdd);
-      setTotalPower(powerAddMult = solarPowerNum);
+      setPowerAddMult(solarPowerNum);
+      //For some strange reason, powerAddMult won't change the first time around, going to copy the function call instead with personalized values
+      addUpPower(numToAdd * solarPowerNum); //-1 or 1 times the power being added
     }
     else if(powerType === "Wind" && windNum + numToAdd >= 0)
     {
       setWindCount(windNum + numToAdd);
-      setTotalPower(powerAddMult = windPowerNum);
+      setPowerAddMult(windPowerNum);
+      addUpPower(numToAdd * windPowerNum);
     }
     else if(powerType === "Hydro" && hydroNum + numToAdd >= 0)
     {
       setHydroCount(hydroNum + numToAdd);
-      setTotalPower(powerAddMult = hydroPowerNum);
+      setPowerAddMult(hydroPowerNum);
+      addUpPower(numToAdd * hydroPowerNum);
     }
-
+  }
+  
+  function addUpPower(KWHNumber)
+  {
+    setTotalPower(totalPower + KWHNumber);
   }
 
   const houseAdd = () => {
@@ -74,18 +85,20 @@ function App() {
         <div class="mainpage-columns" style={{flex: '15%'}}>
         {/*-------------------------------------------- ENERGY SOURCES -------------------------------------------- */}
           <h2>Energy Sources</h2>
+          <div class="power-source-column">
 
-          <button onClick={() => powerClick("Solar", 1)}>
-            <img src={solarPanel} alt="Solar Panel" class="power-source-image"/>
-          </button>
+            <button onClick={() => powerClick("Solar", 1)}>
+              <img src={solarPanel} alt="Solar Panel" class="power-source-image"/>
+            </button>
 
-          <button onClick={() => powerClick("Wind", 1)}>
-            <img src={windTurbine} alt="Wind Turbine" class="power-source-image"/>
-          </button>
+            <button onClick={() => powerClick("Wind", 1)}>
+              <img src={windTurbine} alt="Wind Turbine" class="power-source-image"/>
+            </button>
 
-          <button onClick={() => powerClick("Hydro", 1)}>
-            <img src={hydroDam} alt="Hydro Dam" class="power-source-image"/>
-          </button>
+            <button onClick={() => powerClick("Hydro", 1)}>
+              <img src={hydroDam} alt="Hydro Dam" class="power-source-image"/>
+            </button>
+          </div>
 
         </div>
 
@@ -109,6 +122,8 @@ function App() {
               <img src={hydroDam} alt="Hydro Dam" class="power-source-image"/>
             </button>
             <p>x{hydroNum}</p>
+
+            <h2>POWER: {totalPower} KWH</h2>
           </div>
         </div>
 
