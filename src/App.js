@@ -21,7 +21,7 @@ function App() {
   const [items, setItems] = useState([]);
   //items.push("Item x"); //USE THIS TO ADD HOUSES
 
-  const powerClick = (powerType, numToAdd) => 
+  const powerClick = (powerType, numToAdd) =>
   {
     if(powerType === "Solar" && solarNum + numToAdd >= 0)
     {
@@ -36,11 +36,18 @@ function App() {
       setHydroCount(hydroNum + numToAdd);
     }
 
-    
   }
-  
 
-  /*function addSolarNum(e) 
+  const houseAdd = () => {
+    setItems(prevItems => [...prevItems, 1])
+  }
+
+  const houseDelete = () => {
+    setItems(prevArray => prevArray.slice(0, -1))
+  }
+
+
+  /*function addSolarNum(e)
   {
     e.preventDefault();
     setCount(solarNum + 1);
@@ -82,7 +89,7 @@ function App() {
               <img src={solarPanel} alt="Solar Panel" class="power-source-image"/>
             </button>
             <p>x{solarNum}</p>
-            
+
             <button onClick={() => powerClick("Wind", -1)}>
               <img src={windTurbine} alt="Wind Turbine" class="power-source-image"/>
             </button>
@@ -103,9 +110,16 @@ function App() {
 
             <ul>
               {items.map((item, index) => (
-                <img src={house} alt="House" class="power-source-image"/>
+                <>
+                <img key={index} src={house} alt="House" class="power-source-image"/>
+                </>
               ))}
             </ul>
+
+            <button onClick={() => houseDelete()}> Remove House (Placeholder)</button>
+            <button onClick={() => houseAdd()}> Add House (Placeholder)</button>
+
+
 
           </div>
 
