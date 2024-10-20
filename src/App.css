@@ -40,12 +40,16 @@
   border:1px solid black;
 }
 
-.power-grid
+.power-grid-counter
 {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+}
+
+.power-grid {
+  margin-top: 10px
 }
 
 .power-source-image
