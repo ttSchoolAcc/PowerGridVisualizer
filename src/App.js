@@ -117,27 +117,27 @@ function App() {
 
     if(roundedNum < 15)
     {
-      for (let i = 0; i < items.length; i++) 
+      for (let i = 0; i < items.length; i++)
       {
         houseDelete()
-      } 
+      }
 
-      for (let i = 0; i < roundedNum; i++) 
+      for (let i = 0; i < roundedNum; i++)
       {
         houseAdd()
-      } 
+      }
     }
     else
     {
-      for (let i = 0; i < items.length; i++) 
+      for (let i = 0; i < items.length; i++)
       {
         houseDelete()
-      } 
+      }
 
-      for (let i = 0; i < 14; i++) 
+      for (let i = 0; i < 14; i++)
       {
         houseAdd()
-      } 
+      }
     }
 
     if(amountOfHomes >= 1)

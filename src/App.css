@@ -48,6 +48,13 @@
   flex-wrap: wrap;
 }
 
+.power-grid-counter button
+{
+  display: flex;
+  justify-content: space-between;
+  border-radius: 2px;
+}
+
 .power-grid {
   margin-top: 10px
 }
@@ -57,13 +64,20 @@
   width: 100px;
 }
 
-.power-source-column /* NOT CENTERED PLS FIX */
+.power-source-column
 {
   display: flex;
-  width: 80%;
+  width: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.power-source-column button
+{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 2px;
 }
 
 .stats-column{
