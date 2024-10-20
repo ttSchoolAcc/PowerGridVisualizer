@@ -35,6 +35,21 @@ function App() {
   const [powerBldgs, setBldgs] = useState([]);
   //items.push("Item x"); //USE THIS TO ADD HOUSES
 
+  ///////COST//////// //In MILLION USD
+  const [solarCost, setSolarCost] = useState(0.3); //300,000
+  const [windCost, setWindCost] = useState(2.5); //2.5 M
+  const [hydroCost, setHydroCost] = useState(1800); //1800 M
+  const [totalCost, setTotalCost] = useState(0);
+
+  ///////Space//////// //In ACRES
+  const [solarSpace] = useState(0.0004); //300,000
+  const [windSpace] = useState(17.5); //2.5 M
+  const [hydroSpace] = useState(0.0151); //1800 M
+  const [totalSpace, setTotalSpace] = useState(0);
+
+  ///////POLLUTION//////// //None for green energy
+  const [totalPollution, setTotalPollution] = useState(0);
+
   const powerClick = (powerType, numToAdd) =>
   {
     if(powerType === "Solar" && solarNum + numToAdd >= 0)
@@ -88,22 +103,18 @@ function App() {
 
   useEffect(() => {
     let roundedNum = totalPower / homeEnergyConsumption; //each home consumes 30 by default
-    if(roundedNum > 0)
-    {
-      houseAdd()
-      roundedNum = Math.floor(roundedNum);
-      setHomeAmount(roundedNum + 1);
-    }
-    else
+    //if(roundedNum >= 1)
     {
       roundedNum = Math.floor(roundedNum);
-      setHomeAmount(0);
+      setHomeAmount(Math.floor(totalPower/30));
     }
+
     houseAutoAdd(roundedNum);
-  }, [totalPower, homeEnergyConsumption]);
+  }, [totalPower, homeEnergyConsumption, amountOfHomes]);
 
   function houseAutoAdd(roundedNum)
   {
+
     if(roundedNum < 15)
     {
       for (let i = 0; i < items.length; i++) 
@@ -128,6 +139,14 @@ function App() {
         houseAdd()
       } 
     }
+
+    if(amountOfHomes >= 1)
+    {
+      houseAdd();
+    }
+
+    setTotalCost(Math.round(((solarCost * solarNum) + (windCost * windNum) + (hydroCost * hydroNum)) * 1000)/ 1000)
+    setTotalSpace(Math.round(((solarSpace * solarNum) + (windSpace * windNum) + (hydroSpace * hydroNum)) * 1000)/1000)
   }
 
   const houseAdd = () => {
@@ -194,7 +213,6 @@ function App() {
             </button>
             <p>x{hydroNum}</p>
 
-            <h2>POWER: {totalPower} KWH</h2>
           </div>
 
           <div className='power-grid'>
@@ -233,11 +251,11 @@ function App() {
         {/*-------------------------------------------- STATISTICS -------------------------------------------- */}
           <div class="stats-column" style={{height: '400px'}}>
             <h1>Stats</h1>
-            <h2>{kWattsNum} KW/H</h2>
+            <h2>Power Output: {totalPower} kWh</h2>
             <div class="statistics">
-              <h4>Cost: </h4>
-              <h4>Polution: </h4>
-              <h4>Cost: </h4>
+              <h4>Cost: ${totalCost} Million</h4>
+              <h4>Pollution: {totalPollution} Tons of CO2</h4>
+              <h4>Space Required: {totalSpace} Acres</h4>
             </div>
           </div>
         </div>
