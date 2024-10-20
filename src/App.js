@@ -15,6 +15,7 @@ function App() {
   const [solarNum, setCount] = useState(0);
   const [windNum, setWindCount] = useState(0);
   const [hydroNum, setHydroCount] = useState(0);
+  const [kWattsNum, setkWattsNum] = useState(0);
 
   //We use KW/H
   const [totalPower, setTotalPower] = useState(0);
@@ -149,8 +150,14 @@ function App() {
           </div>
 
         {/*-------------------------------------------- STATISTICS -------------------------------------------- */}
-          <div class="mainpage-columns" style={{height: '400px'}}>
-            <h2>Stats</h2>
+          <div class="stats-column" style={{height: '400px'}}>
+            <h1>Stats</h1>
+            <h2>{kWattsNum} KW/H</h2>
+            <div class="statistics">
+              <h4>Cost: </h4>
+              <h4>Polution: </h4>
+              <h4>Cost: </h4>
+            </div>
           </div>
         </div>
 
