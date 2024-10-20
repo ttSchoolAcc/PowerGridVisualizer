@@ -167,51 +167,57 @@ function App() {
 
   return (
 
-    <div className="App">
-
+    <div className="App" style={{backgroundColor: "#ffecad"}}>
+      <div class="web-header">
+        <h1>Renewable Energy Visualizer</h1>
+      </div>
       <div class="mainpage-columns-parent">
 
 
         <div class="mainpage-columns" style={{flex: '15%'}}>
         {/*-------------------------------------------- ENERGY SOURCES -------------------------------------------- */}
-          <h2>Energy Sources</h2>
+          <h2 class="section-headers">Energy Sources</h2>
           <div class="power-source-column">
 
             <button onClick={() => powerClick("Solar", 1)}>
               <img src={solarPanel} alt="Solar Panel" class="power-source-image"/>
             </button>
+            <p style={{margin: '4px'}}>Solar Panel</p>
 
             <button onClick={() => powerClick("Wind", 1)}>
               <img src={windTurbine} alt="Wind Turbine" class="power-source-image"/>
             </button>
+            <p style={{margin: '4px'}}>Wind Turbine</p>
 
             <button onClick={() => powerClick("Hydro", 1)}>
               <img src={hydroDam} alt="Hydro Dam" class="power-source-image"/>
             </button>
+            <p style={{margin: '4px'}}>Hydro Electric</p>
+            
           </div>
 
         </div>
 
         {/*-------------------------------------------- POWER GRID -------------------------------------------- */}
         <div class="mainpage-columns" style={{flex: '40%'}}>
-          <h2>Grid</h2>
+          <h2 class="section-headers">Grid</h2>
 
           <div class="power-grid-counter">
 
             <button onClick={() => powerClick("Solar", -1)}>
               <img src={solarPanel} alt="Solar Panel" class="power-source-image"/>
             </button>
-            <p>x{solarNum}</p>
+            <h3 class="source-amount-num">x{solarNum}</h3>
 
             <button onClick={() => powerClick("Wind", -1)}>
               <img src={windTurbine} alt="Wind Turbine" class="power-source-image"/>
             </button>
-            <p>x{windNum}</p>
+            <h3 class="source-amount-num">x{windNum}</h3>
 
             <button onClick={() => powerClick("Hydro", -1)}>
               <img src={hydroDam} alt="Hydro Dam" class="power-source-image"/>
             </button>
-            <p>x{hydroNum}</p>
+            <h3 class="source-amount-num">x{hydroNum}</h3>
 
           </div>
 
@@ -228,7 +234,7 @@ function App() {
         {/*-------------------------------------------- HOMES -------------------------------------------- */}
         <div style={{flex: '45%'}}>
           <div class="mainpage-columns" style={{height: '400px'}}>
-            <h2>Homes</h2>
+            <h2 class="section-headers">Homes</h2>
 
 
             <ul>
@@ -250,7 +256,7 @@ function App() {
 
         {/*-------------------------------------------- STATISTICS -------------------------------------------- */}
           <div class="stats-column" style={{height: '400px'}}>
-            <h1>Stats</h1>
+            <h1 class="section-headers">Stats</h1>
             <h2>Power Output: {totalPower} kWh</h2>
             <div class="statistics">
               <h4>Cost: ${totalCost} Million</h4>

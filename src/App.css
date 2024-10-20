@@ -46,6 +46,7 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  margin-top: 10px;
 }
 
 .power-grid-counter button
@@ -80,6 +81,22 @@
   border-radius: 2px;
 }
 
+.power-grid-counter button
+{
+  display: flex;
+  justify-content: space-between;
+  border-radius: 10px;
+  background-color: lightgreen;
+}
+
+.power-source-column button
+{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  background-color: lightgreen;
+}
+
 .stats-column{
   height: 100%;
 }
@@ -89,6 +106,40 @@
   flex-direction: column;
   align-items: start;
   padding-left: 45px;
+}
+
+.source-amount-num{
+  align-self: flex-end;
+  margin-bottom: 0;
+  margin-right: 10px;
+}
+
+.section-headers{
+  background-color: #edbd7e;
+  padding: 10px; 
+  margin: 0;
+  border: 0px solid black;
+  border-bottom-width: 3px;
+}
+
+.web-header{
+  display: flex;
+  height: 80px;
+  justify-content: start;
+  margin: 0px;
+  padding-left: 20px;
+  background-color: #a7f849;
+}
+
+@font-face {
+  font-family: 'MyCustomFont';
+  src: url('Graphics/Poppins-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  font-family: 'MyCustomFont';
 }
 
 @keyframes App-logo-spin {
