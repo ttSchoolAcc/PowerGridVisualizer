@@ -1,7 +1,8 @@
 //import logo from './logo.svg';
 import './App.css';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+//import { useEffect, useState } from 'react';
 
 import solarPanel from './Graphics/SolarPanel.png';
 import windTurbine from './Graphics/WindTurbine.png';
@@ -27,7 +28,7 @@ function App() {
   const [windPowerNum, setWindPowerNum] = useState(21.5);
   const [hydroPowerNum, setHydroPowerNum] = useState(10958904);
 
-  const [homeEnergyConsumption] = useState(30); //30 kwh per day
+  const [homeEnergyConsumption] = useState(100); //30 kwh per day is average
 
   const [items, setItems] = useState([]);
   //items.push("Item x"); //USE THIS TO ADD HOUSES
@@ -58,6 +59,44 @@ function App() {
   function addUpPower(KWHNumber)
   {
     setTotalPower(totalPower + KWHNumber);
+  }
+
+  useEffect(() => {
+    let roundedNum = totalPower / homeEnergyConsumption; //each home consumes 30 by default
+    if(roundedNum > 0)
+    {
+      houseAdd()
+    }
+    roundedNum = Math.floor(roundedNum);
+    houseAutoAdd(roundedNum);
+  }, [totalPower, homeEnergyConsumption]);
+
+  function houseAutoAdd(roundedNum)
+  {
+    if(roundedNum < 15)
+    {
+      for (let i = 0; i < items.length; i++) 
+      {
+        houseDelete()
+      } 
+
+      for (let i = 0; i < roundedNum; i++) 
+      {
+        houseAdd()
+      } 
+    }
+    else
+    {
+      for (let i = 0; i < items.length; i++) 
+      {
+        houseDelete()
+      } 
+
+      for (let i = 0; i < 14; i++) 
+      {
+        houseAdd()
+      } 
+    }
   }
 
   const houseAdd = () => {
