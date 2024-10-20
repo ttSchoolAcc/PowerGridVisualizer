@@ -30,6 +30,7 @@ function App() {
   const [homeEnergyConsumption] = useState(30); //30 kwh per day
 
   const [items, setItems] = useState([]);
+  const [powerBldgs, setBldgs] = useState([]);
   //items.push("Item x"); //USE THIS TO ADD HOUSES
 
   const powerClick = (powerType, numToAdd) =>
@@ -38,6 +39,13 @@ function App() {
     {
       setCount(solarNum + numToAdd);
       setPowerAddMult(solarPowerNum);
+
+      if(numToAdd === 1) setBldgs(prevItems => [...prevItems, solarPanel]);
+      if(numToAdd === -1) {
+        const deleteBldg = powerBldgs.lastIndexOf(solarPanel);
+        powerBldgs.splice(deleteBldg,1);
+        setBldgs([...powerBldgs]);
+      }
       //For some strange reason, powerAddMult won't change the first time around, going to copy the function call instead with personalized values
       addUpPower(numToAdd * solarPowerNum); //-1 or 1 times the power being added
     }
@@ -45,16 +53,32 @@ function App() {
     {
       setWindCount(windNum + numToAdd);
       setPowerAddMult(windPowerNum);
+
+      if(numToAdd === 1) setBldgs(prevItems => [...prevItems, windTurbine]);
+      if(numToAdd === -1) {
+        const deleteBldg = powerBldgs.lastIndexOf(windTurbine);
+        powerBldgs.splice(deleteBldg,1);
+        setBldgs([...powerBldgs]);
+      }
+
       addUpPower(numToAdd * windPowerNum);
     }
     else if(powerType === "Hydro" && hydroNum + numToAdd >= 0)
     {
       setHydroCount(hydroNum + numToAdd);
       setPowerAddMult(hydroPowerNum);
+
+      if(numToAdd === 1) setBldgs(prevItems => [...prevItems, hydroDam]);
+      if(numToAdd === -1) {
+        const deleteBldg = powerBldgs.lastIndexOf(hydroDam);
+        powerBldgs.splice(deleteBldg,1);
+        setBldgs([...powerBldgs]);
+      }
+
       addUpPower(numToAdd * hydroPowerNum);
     }
   }
-  
+
   function addUpPower(KWHNumber)
   {
     setTotalPower(totalPower + KWHNumber);
@@ -107,7 +131,7 @@ function App() {
         <div class="mainpage-columns" style={{flex: '40%'}}>
           <h2>Grid</h2>
 
-          <div class="power-grid">
+          <div class="power-grid-counter">
 
             <button onClick={() => powerClick("Solar", -1)}>
               <img src={solarPanel} alt="Solar Panel" class="power-source-image"/>
@@ -126,6 +150,15 @@ function App() {
 
             <h2>POWER: {totalPower} KWH</h2>
           </div>
+
+          <div className='power-grid'>
+              {powerBldgs.map((item, index) => (
+                <>
+                <img key={index} src={item} alt="Building" class="power-source-image"/>
+                </>
+              ))}
+          </div>
+
         </div>
 
         {/*-------------------------------------------- HOMES -------------------------------------------- */}
