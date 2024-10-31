@@ -13,6 +13,7 @@ import house from './Graphics/House.png';
 function App() {
 
   //let solarNum = 0;
+  //TEST COMMIT RAHHHHHHHHHHHHHHHHH
   const [solarNum, setCount] = useState(0);
   const [windNum, setWindCount] = useState(0);
   const [hydroNum, setHydroCount] = useState(0);
